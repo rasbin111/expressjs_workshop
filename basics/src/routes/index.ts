@@ -1,13 +1,11 @@
 import express, { Express, Request, Response, NextFunction } from "express";
-import { User } from "../generated/prisma/index";
 
-let router = express.Router();
 
-const { PrismaClient } = require("../../generated/prisma");
+let IndexRouter = express.Router();
+
+import {PrismaClient} from "../../generated/prisma/index.js";
 
 const prisma = new PrismaClient();
-
-let users: User[];
 
 async function main(): Promise<void> {
   const allUsers = await prisma.user.findMany();
@@ -23,8 +21,8 @@ main()
     process.exit(1);
   });
 
-router.get("/", function (req: Request, res: Response, next: NextFunction) {
+IndexRouter.get("/", function (req: Request, res: Response, next: NextFunction) {
   res.render("index", { title: "Express" });
 });
 
-export default router;
+export default IndexRouter;

@@ -1,17 +1,18 @@
-import express, { Express, Request, Response, NextFunction } from "express"
-const indexRouter = require("./routes/index")
+import express, { Request, Response, NextFunction } from "express"
+import IndexRouter from "./routes/index.js"
+import path from "path";
+import { fileURLToPath } from 'url';
 
-const path = require("path")
-const { time } = require("console")
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 var app = express()
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../views'));
 app.set("view engine", "pug")
 
-app.use('/static', express.static(path.join(__dirname, "public")))
+app.use('/static', express.static(path.join(__dirname, "../public")))
 
-const port = 3000
 
 const myLogger = function (req: Request, res: Response, next: NextFunction){
   console.log("LOGGED")
@@ -32,7 +33,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction)=>{
 app.use(myLogger)
 app.use(requestTime)
 
-app.use("/", indexRouter)
+app.use("/", IndexRouter)
 
 // app.get("/", (req, res)=>{
 //   let responseText = "Home Page <br/>"
@@ -58,4 +59,6 @@ app.delete("/user", (req, res)=>{
   res.send("Delete request")
 })
 
-module.exports = app;
+app.listen(5000, ()=>{
+  console.log("Listening on port 5000")
+});

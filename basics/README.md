@@ -1,13 +1,13 @@
-# express_banking
+# basics
 
 On MacOS or Linux, run the app with this command:
 ```bash
-DEBUG=express_banking:* npm start
+DEBUG=basics:* npm start
 ```
 
 On Windows Command Prompt, use this command:
 ```cmd
-set DEBUG=express_banking:* & npm start
+set DEBUG=basics:* & npm start
 ```
 
 To map your data model to the database schema, you need to use the prisma migrate CLI commands:
