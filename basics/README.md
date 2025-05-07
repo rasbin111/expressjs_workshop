@@ -14,3 +14,8 @@ To map your data model to the database schema, you need to use the prisma migrat
 ```bash
 npx prisma migrate dev --name init
 ```
+
+Generate prisma client
+```bash
+npx prisma generate
+```
